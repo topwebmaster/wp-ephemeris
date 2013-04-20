@@ -1,4 +1,14 @@
 <?php
+/*
+Plugin Name: WordPress Ephemeris Calculator
+Plugin URI: http://andrewsfreeman.com/wordpress-ephemeris
+Description: Provides a birthdate field to calculate the planetary positions at birth. SEE README.
+Version: 0.1
+Author: andrewsfreeman
+Author URI: http://andrewsfreeman.com
+License: GPL2
+*/
+
 $planets = array(
 	0 => 'Sun',
 	1 => 'Moon',
