@@ -39,12 +39,6 @@ class WPephemeris {
 			'name' => 'Saturn',
 			'symbol' => '♄'
 			),
-		// 7 => 'Uranus',
-		// 8 => 'Neptune',
-		// 9 => 'Pluto',
-		// 10 => 'mean Node',
-		// 11 => 'true Node',
-		// 12 => 'mean Apogee'
 	);
 
 	public $zodiac = array(
