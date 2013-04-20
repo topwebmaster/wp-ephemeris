@@ -11,19 +11,40 @@ License: GPL2
 
 class WPephemeris {
 	public $planets = array(
-		0 => 'Sun',
-		1 => 'Moon',
-		2 => 'Mercury',
-		3 => 'Venus',
-	    4 => 'Mars',
-	    5 => 'Jupiter',
-		6 => 'Saturn',
-		7 => 'Uranus',
-		8 => 'Neptune',
-		9 => 'Pluto',
-		10 => 'mean Node',
-		11 => 'true Node',
-		12 => 'mean Apogee'
+		0 => array(
+			'name' => 'Sun',
+			'symbol' => '☉',
+			),
+		1 => array(
+			'name' => 'Moon',
+			'symbol' => '☽',
+			),
+		2 => array(
+			'name'=> 'Mercury',
+			'symbol' => '☿'
+			),
+		3 => array(
+			'name' => 'Venus',
+			'symbol' => '♀'
+			),
+		4 => array(
+			'name' => 'Mars',
+			'symbol' => '♂'
+			),
+		5 => array(
+			'name' => 'Jupiter',
+			'symbol' => '♃'
+			),
+		6 => array(
+			'name' => 'Saturn',
+			'symbol' => '♄'
+			),
+		// 7 => 'Uranus',
+		// 8 => 'Neptune',
+		// 9 => 'Pluto',
+		// 10 => 'mean Node',
+		// 11 => 'true Node',
+		// 12 => 'mean Apogee'
 	);
 
 	public $zodiac = array(
@@ -64,7 +85,7 @@ class WPephemeris {
 		foreach( $ephem->planets as $index => $planet ) :
 			$deg = substr( $chart[$index], 0, 2 );
 			$sign = substr( $chart[$index], 3, 2 );
-			$output .= '<br />' . $planet . " is " . $deg . " degrees " . $ephem->zodiac[$sign] .'.';
+			$output .= '<br />' . $planet['symbol'] . " " . $deg . " " . $ephem->zodiac[$sign] .'.';
 		endforeach;
 		return $output;
 	}
