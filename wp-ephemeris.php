@@ -46,7 +46,8 @@ class WPephemeris {
 
 	public function print_my_zodiac( $atts ) {
 		# run swetest with date information and separate out results by newlines
-		$result = `/var/www/andrewsfreeman.com/public/wp-content/plugins/wp-ephemeris/src/swetest -b29.05.1991 -t12.000 -fTZ -roundmin -head 2>&1`;
+		$swetest = plugin_dir_path( __FILE__ ) . 'src/swetest';
+		$result = `$swetest -b29.05.1991 -t12.000 -fTZ -roundmin -head 2>&1`;
 		$chart = explode( "\n", $result );
 		# trim excess information
 		foreach ( $chart as $index => $planet ) :
