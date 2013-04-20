@@ -99,16 +99,23 @@ class WPephemeris {
 	);
 
 	public function __construct() {
-		add_shortcode( 'asf-zodiac', array( 'WPephemeris', 'print_my_zodiac' ) );
+		add_shortcode( 'asf-zodiac', array( 'WPephemeris', 'get_zodiac' ) );
 		add_filter( 'widget_text', 'do_shortcode', 11 );
+		add_action( 'wp_ajax_nopriv_wpephemeris', array( $this, 'get_zodiac' ) );
+		add_action( 'wp_ajax_wpephemeris', array( $this, 'get_zodiac' ) );
 	}
 
-	public function print_my_zodiac( $atts ) {
+	public function get_zodiac( $atts ) {
 		extract( shortcode_atts( array(
 		'date' => '29.05.1991',
 		'timeutc' => '12.000',
 		'today' => 'true'
 		), $atts ) );
+
+		if ( $_GET['date'] ) :
+			$today = false;
+			$date = $_GET['date'];
+		endif;
 
 		if ( $today ) :
 			$date = date( 'd.m.Y' );
@@ -132,11 +139,25 @@ class WPephemeris {
 
 		# return output
 		$output = "";
+		$wheel = array();
 		foreach( $ephem->planets as $index => $planet ) :
 			$deg = substr( $chart[$index], 0, 2 );
 			$sign = substr( $chart[$index], 3, 2 );
+			$wheel[] = array(
+				$planet,
+				$deg,
+				$ephem->zodiac[$sign]
+				);
 			$output .= '' . $planet['symbol'] . " " . $deg . "° " . $ephem->zodiac[$sign]['symbol'] .'<br />';
 		endforeach;
+		
+		# ajax request?
+		if ( defined( 'DOING_AJAX' ) ):
+			echo json_encode( $wheel );
+			exit();
+		endif;
+		
+		# shortcode
 		return $output;
 	}
 }
