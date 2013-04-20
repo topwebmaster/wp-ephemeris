@@ -48,18 +48,54 @@ class WPephemeris {
 	);
 
 	public $zodiac = array(
-		'ar' => 'Aries',
-		'ta' => 'Taurus',
-		'ge' => 'Gemini',
-		'cn' => 'Cancer',
-		'le' => 'Leo',
-		'vi' => 'Virgo',
-		'li' => 'Libra',
-		'sc' => 'Scorpio',
-		'sa' => 'Sagittarius',
-		'cp' => 'Capricorn',
-		'aq' => 'Aquarius',
-		'pi' => 'Pisces'
+		'ar' => array(
+			'name' => 'Aries',
+			'symbol' => '♈',
+			),
+		'ta' => array(
+			'name' => 'Taurus',
+			'symbol' => '♉',
+			),
+		'ge' => array(
+			'name' => 'Gemini',
+			'symbol' => '♊',
+			),
+		'cn' => array(
+			'name' => 'Cancer',
+			'symbol' => '♋',
+			),
+		'le' => array(
+			'name' => 'Leo',
+			'symbol' => '♌',
+			),
+		'vi' => array(
+			'name' => 'Virgo',
+			'symbol' => '♍',
+			),
+		'li' => array(
+			'name' => 'Libra',
+			'symbol' => '♎',
+			),
+		'sc' => array(
+			'name' => 'Scorpio',
+			'symbol' => '♏',
+			),
+		'sa' => array(
+			'name' => 'Sagittarius',
+			'symbol' => '♐',
+			),
+		'cp' => array(
+			'name' => 'Capricorn',
+			'symbol' => '♑',
+			),
+		'aq' => array(
+			'name' => 'Aquarius',
+			'symbol' => '♒',
+			),
+		'pi' => array(
+			'name' => 'Pisces',
+			'symbol' => '♓',
+			),
 	);
 
 	public function __construct() {
@@ -85,7 +121,7 @@ class WPephemeris {
 		foreach( $ephem->planets as $index => $planet ) :
 			$deg = substr( $chart[$index], 0, 2 );
 			$sign = substr( $chart[$index], 3, 2 );
-			$output .= '<br />' . $planet['symbol'] . " " . $deg . " " . $ephem->zodiac[$sign] .'.';
+			$output .= '<br />' . $planet['symbol'] . " " . $deg . "° " . $ephem->zodiac[$sign]['symbol'] .'.';
 		endforeach;
 		return $output;
 	}
