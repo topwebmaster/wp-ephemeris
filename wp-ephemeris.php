@@ -100,13 +100,26 @@ class WPephemeris {
 
 	public function __construct() {
 		add_shortcode( 'asf-zodiac', array( 'WPephemeris', 'print_my_zodiac' ) );
+		add_filter( 'widget_text', 'do_shortcode', 11 );
 	}
 
 	public function print_my_zodiac( $atts ) {
+		extract( shortcode_atts( array(
+		'date' => '29.05.1991',
+		'timeutc' => '12.000',
+		'today' => 'true'
+		), $atts ) );
+
+		if ( $today ) :
+			$date = date( 'd.m.Y' );
+			$timeutc = date( 'H.i' );
+		endif;
+
 		# run swetest with date information and separate out results by newlines
 		$swetest = plugin_dir_path( __FILE__ ) . 'src/swetest';
-		$result = `$swetest -b29.05.1991 -t12.000 -fTZ -roundmin -head 2>&1`;
+		$result = `$swetest -b$date -t$timeutc -fTZ -roundmin -head 2>&1`;
 		$chart = explode( "\n", $result );
+
 		# trim excess information
 		foreach ( $chart as $index => $planet ) :
 			$chart[$index] = substr( $planet, 23 );
@@ -117,12 +130,12 @@ class WPephemeris {
 		# only get planets
 		$chart = array_slice( $chart , 0, 13 );
 
+		# return output
 		$output = "";
-		# print it all baby!
 		foreach( $ephem->planets as $index => $planet ) :
 			$deg = substr( $chart[$index], 0, 2 );
 			$sign = substr( $chart[$index], 3, 2 );
-			$output .= '<br />' . $planet['symbol'] . " " . $deg . "° " . $ephem->zodiac[$sign]['symbol'] .'.';
+			$output .= '' . $planet['symbol'] . " " . $deg . "° " . $ephem->zodiac[$sign]['symbol'] .'<br />';
 		endforeach;
 		return $output;
 	}
