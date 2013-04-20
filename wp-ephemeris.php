@@ -99,6 +99,7 @@ class WPephemeris {
 	);
 
 	public function __construct() {
+		add_shortcode( 'asf-zodiac', array( 'WPephemeris', 'print_my_zodiac' ) );
 	}
 
 	public function print_my_zodiac( $atts ) {
@@ -128,5 +129,3 @@ class WPephemeris {
 }
 
 new WPephemeris;
-
-add_shortcode( 'asf-zodiac', array( 'WPephemeris', 'print_my_zodiac' ) );
