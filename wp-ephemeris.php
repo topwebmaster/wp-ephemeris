@@ -16,31 +16,31 @@ class WPephemeris {
 		0 => array(
 			'name' => 'Sun',
 			'symbol' => '☉',
-			),
+		),
 		1 => array(
 			'name' => 'Moon',
 			'symbol' => '☽',
-			),
+		),
 		2 => array(
 			'name'=> 'Mercury',
 			'symbol' => '☿'
-			),
+		),
 		3 => array(
 			'name' => 'Venus',
 			'symbol' => '♀'
-			),
+		),
 		4 => array(
 			'name' => 'Mars',
 			'symbol' => '♂'
-			),
+		),
 		5 => array(
 			'name' => 'Jupiter',
 			'symbol' => '♃'
-			),
+		),
 		6 => array(
 			'name' => 'Saturn',
 			'symbol' => '♄'
-			),
+		),
 	);
 
 	# zodiacal signs, keys as swiss abbreviates them, with name and symbol
@@ -48,51 +48,51 @@ class WPephemeris {
 		'ar' => array(
 			'name' => 'Aries',
 			'symbol' => '♈',
-			),
+		),
 		'ta' => array(
 			'name' => 'Taurus',
 			'symbol' => '♉',
-			),
+		),
 		'ge' => array(
 			'name' => 'Gemini',
 			'symbol' => '♊',
-			),
+		),
 		'cn' => array(
 			'name' => 'Cancer',
 			'symbol' => '♋',
-			),
+		),
 		'le' => array(
 			'name' => 'Leo',
 			'symbol' => '♌',
-			),
+		),
 		'vi' => array(
 			'name' => 'Virgo',
 			'symbol' => '♍',
-			),
+		),
 		'li' => array(
 			'name' => 'Libra',
 			'symbol' => '♎',
-			),
+		),
 		'sc' => array(
 			'name' => 'Scorpio',
 			'symbol' => '♏',
-			),
+		),
 		'sa' => array(
 			'name' => 'Sagittarius',
 			'symbol' => '♐',
-			),
+		),
 		'cp' => array(
 			'name' => 'Capricorn',
 			'symbol' => '♑',
-			),
+		),
 		'aq' => array(
 			'name' => 'Aquarius',
 			'symbol' => '♒',
-			),
+		),
 		'pi' => array(
 			'name' => 'Pisces',
 			'symbol' => '♓',
-			),
+		),
 	);
 
 	##
@@ -122,9 +122,9 @@ class WPephemeris {
 		# extra arguments and defaults as local variables
 		# $date, $timeutc, $today
 		extract( shortcode_atts( array(
-		'date' => '29.05.1991',
-		'timeutc' => '12.000',
-		'today' => 'true'
+			'date' => '29.05.1991',
+			'timeutc' => '12.000',
+			'today' => 'true'
 		), $args ) );
 
 		# if it's an AJAX request, parse the GET variables.
@@ -164,7 +164,7 @@ class WPephemeris {
 				$planet,
 				$deg,
 				$ephem->zodiac[$sign]
-				);
+			);
 			$output .= $planet['symbol'] . " " . $deg . "° ";
 			$output .= $ephem->zodiac[$sign]['symbol'] .'<br />';
 		endforeach;
