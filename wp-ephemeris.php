@@ -122,21 +122,14 @@ class WPephemeris {
 		# extra arguments and defaults as local variables
 		# $date, $timeutc, $today
 		extract( shortcode_atts( array(
-			'date' => '29.05.1991',
-			'timeutc' => '12.000',
-			'today' => 'true'
+			'date' => date( 'd.m.Y' ),
+			'timeutc' => date( 'H.i' ),
 		), $args ) );
 
 		# if it's an AJAX request, parse the GET variables.
-		if ( DOING_AJAX ) :
-			$today = $_GET['today'] ? true : false;
+		if ( defined( 'DOING_AJAX' ) ) :
 			$date = $_GET['date'] ? $_GET['date'] : $date;
 			$timeutc = $_GET['timeutc'] ? $_GET['timeutc'] : "00.0000";
-		endif;
-
-		if ( $today ) :
-			$date = date( 'd.m.Y' );
-			$timeutc = date( 'H.i' );
 		endif;
 
 		# run swetest with date information and separate out results by newlines
