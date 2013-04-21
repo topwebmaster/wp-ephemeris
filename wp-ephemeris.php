@@ -108,7 +108,7 @@ class WPephemeris {
 	}
 
 	##
-	# __get_zodiac() the only function that actually does all the work
+	# get_zodiac() the only function that actually does all the work
 	# 
 	# The shortcode `[wp-ephemeris]` by default prints the result for the 
 	# current time/date. Add the today="false" parameter, and you get the result
