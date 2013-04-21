@@ -122,8 +122,9 @@ class WPephemeris {
 		$chart = explode( "\n", $result );
 
 		# trim excess information
-		foreach ( $chart as $index => $planet ) :
-			$chart[$index] = substr( $planet, 23 );
+		foreach ( $chart as $index => $swe_output ) :
+			$swe_output_cleaned = split( 'ET ', $swe_output );
+			$chart[$index] = $swe_output_cleaned[1];
 		endforeach;
 
 		$ephem = new WPephemeris;
